@@ -1,0 +1,23 @@
+import discord 
+from discord.ext import commands
+
+client = commands.Bot(command_prefix = '!',intents=discord.Intents.all())
+
+@client.event
+async def on_ready():
+    print("사용 준비가 완료되었습니다!")
+    game = discord.Game("테스트")
+    await client.change_presence(status=discord.Status.online, activity=game)
+    print("--------------------------")
+
+# client.command async def 텍스트(ctx): await ctx.send("텍스트") (( EX_ me : !만세 / bot : 삼창 ))
+@client.command()
+async def 안녕(ctx):
+    await ctx.send("안녕하세요")
+    
+    
+@client.command()
+async def 만세(ctx):
+    await ctx.send("삼창")
+
+client.run('TOKEN')
